@@ -1,18 +1,22 @@
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsAdminUserRole, IsOwnerOrAdmin
+
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Task
 from .serializers import TaskSerializer
-
-from .permissions import IsAdminUserRole
-
-
+from .permissions import IsOwnerOrAdmin, IsAdminUserRole
 class TaskListCreateView(generics.ListCreateAPIView):
 
     serializer_class = TaskSerializer
 
     permission_classes = [IsAuthenticated]
+
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+
+    filterset_fields = ['completed']
+
+    search_fields = ['title']
 
     def get_queryset(self):
 
