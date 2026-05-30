@@ -53,6 +53,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
+        if not user.is_verified:
+            raise serializers.ValidationError(
+                "Email not verified."
+            )
 
         token = super().get_token(user)
 
