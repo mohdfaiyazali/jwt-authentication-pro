@@ -4,6 +4,7 @@ from .views import (
     LogoutView,
     CustomTokenObtainPairView,
     VerifyEmailView,
+    ForgotPasswordView
 
 )
 from rest_framework_simplejwt.views import (
@@ -27,6 +28,11 @@ urlpatterns = [
         'verify-email/<int:user_id>/<str:token>/',
         VerifyEmailView.as_view(),
         name='verify_email'
+    ),
+    path(
+        'forgot-password/',
+        ForgotPasswordView.as_view(),
+        name='forgot-password'
     ),
 
 ]

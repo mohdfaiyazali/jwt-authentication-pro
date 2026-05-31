@@ -14,7 +14,7 @@ class User(AbstractUser):
         default='user'
     )
     
-    is_verified = models.BooleanField(default=False)
+    is_verified = models.BooleanField()
 
     def __str__(self):
         return self.username

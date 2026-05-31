@@ -1,19 +1,45 @@
-from rest_framework import generics
-from .models import User
 from .serializers import (
     RegisterSerializer,
     LogoutSerializer,
-    CustomTokenObtainPairSerializer
+    CustomTokenObtainPairSerializer,
+    ForgotPasswordSerializer
 )
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .utils import send_verification_email
+from .utils import send_verification_email, send_password_reset_email, email_verification_token
 from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from .utils import email_verification_token
 from .models import User
+from rest_framework.views import APIView
+
+class ForgotPasswordView(APIView):
+
+    def post(self, request):
+
+        serializer = ForgotPasswordSerializer(
+            data=request.data
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        email = serializer.validated_data["email"]
+
+        try:
+            user = User.objects.get(email=email)
+
+            send_password_reset_email(user)
+
+        except User.DoesNotExist:
+            pass
+
+        return Response(
+            {
+                "message":
+                "If an account exists with this email, a reset link has been sent."
+            },
+            status=status.HTTP_200_OK
+        )
 
 class VerifyEmailView(APIView):
 

@@ -6,6 +6,9 @@ from django.conf import settings
 
 email_verification_token = PasswordResetTokenGenerator()
 
+password_reset_token = PasswordResetTokenGenerator()
+
+
 def send_verification_email(user):
 
     token = email_verification_token.make_token(user)
@@ -18,6 +21,24 @@ def send_verification_email(user):
     send_mail(
         subject="Verify Your Account",
         message=f"Click this link:\n{verification_link}",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[user.email],
+        fail_silently=False,
+    )
+
+
+def send_password_reset_email(user):
+
+    token = password_reset_token.make_token(user)
+
+    reset_link = (
+        f"http://127.0.0.1:8000/api/reset-password/"
+        f"{user.id}/{token}/"
+    )
+
+    send_mail(
+        subject="Reset Your Password",
+        message=f"Click this link to reset your password:\n{reset_link}",
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user.email],
         fail_silently=False,

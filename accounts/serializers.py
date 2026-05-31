@@ -2,7 +2,38 @@ from rest_framework import serializers
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth.password_validation import validate_password
 
+
+class ForgotPasswordSerializer(serializers.Serializer):
+
+    email = serializers.EmailField()
+
+class ResetPasswordSerializer(serializers.Serializer):
+
+    uid = serializers.IntegerField()
+
+    token = serializers.CharField()
+
+    password = serializers.CharField(
+        write_only=True
+    )
+
+    password2 = serializers.CharField(
+        write_only=True
+    )
+
+    def validate(self, attrs):
+
+        if attrs["password"] != attrs["password2"]:
+
+            raise serializers.ValidationError(
+                "Passwords do not match."
+            )
+
+        validate_password(attrs["password"])
+
+        return attrs
 
 class RegisterSerializer(serializers.ModelSerializer):
 
