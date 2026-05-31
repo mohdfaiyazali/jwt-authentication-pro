@@ -23,3 +23,7 @@ staticfiles/
 
 # Test/cache files
 .pytest_cache/
+
+
+# log files
+*.log
