@@ -1,0 +1,62 @@
+:root {
+  --bg: #07111f;
+  --bg-2: #0d1728;
+  --card: rgba(13, 23, 40, 0.82);
+  --text: #ecf2ff;
+  --muted: rgba(236, 242, 255, 0.72);
+  --accent: #61dafb;
+  --accent-2: #7c3aed;
+}
+
+* { box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(97, 218, 251, 0.16), transparent 32%),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.18), transparent 30%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  color: var(--text);
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+.bg-shell { background: rgba(7, 17, 31, 0.7); backdrop-filter: blur(14px); }
+.hero-shell, .auth-shell { position: relative; overflow: hidden; }
+.glass-card, .feature-card, .auth-card, .panel-card, .stat-card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+}
+.feature-card, .stat-card { padding: 1.5rem; min-height: 100%; }
+.feature-card h5, .stat-card h3 { color: #fff; }
+.feature-card p, .stat-card p, .text-white-50 { color: var(--muted) !important; }
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  color: #08111f;
+  font-weight: 700;
+  border: none;
+}
+.btn-accent:hover { opacity: 0.95; color: #08111f; }
+.form-control, .form-select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+}
+.form-control:focus, .form-select:focus {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(97, 218, 251, 0.12);
+  color: #fff;
+}
+.task-list { display: grid; gap: 1rem; }
+.task-item {
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.task-title { font-weight: 600; margin-bottom: 0.25rem; }
+.task-meta { font-size: 0.85rem; color: var(--muted); }
+.task-actions .btn { border-radius: 999px; }
+.fade-in { animation: floatIn 0.35s ease-out; }
+@keyframes floatIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

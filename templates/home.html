@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Home | JWT Auth Pro{% endblock %}
+{% block content %}
+<section class="hero-shell">
+  <div class="container py-5">
+    <div class="row align-items-center g-5 py-4">
+      <div class="col-lg-6">
+        <span class="badge text-bg-light text-dark rounded-pill px-3 py-2 mb-3">Secure JWT auth + task management</span>
+        <h1 class="display-4 fw-bold lh-1 text-white">A polished Django app for authentication and task workflows.</h1>
+        <p class="lead text-white-75 mt-4">Modern landing page, responsive login/register screens, and a task dashboard connected to your existing DRF API.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a class="btn btn-accent btn-lg" href="/register/">Get Started</a>
+          <a class="btn btn-outline-light btn-lg" href="/tasks/">Open Tasks</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="glass-card p-4 p-md-5">
+          <div class="row g-3">
+            <div class="col-6"><div class="stat-card"><h3>JWT</h3><p>Access and refresh tokens</p></div></div>
+            <div class="col-6"><div class="stat-card"><h3>DRF</h3><p>REST API with filtering</p></div></div>
+            <div class="col-6"><div class="stat-card"><h3>Tasks</h3><p>Create, edit, complete, delete</p></div></div>
+            <div class="col-6"><div class="stat-card"><h3>Verify</h3><p>Email-based account approval</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-4"><div class="feature-card"><h5>Authentication</h5><p>JWT login, register, logout, and token storage handled on the client side.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><h5>Task Board</h5><p>Search, filter, create, update, and remove tasks from a clean dashboard UI.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><h5>Scalable Structure</h5><p>Shared base layout, reusable styling, and endpoint-driven JavaScript.</p></div></div>
+  </div>
+</section>
+{% endblock %}
